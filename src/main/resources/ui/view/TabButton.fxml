@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<HBox xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+    <!--<left>-->
+        <VBox alignment="CENTER">
+            <Rectangle fx:id="selected" height="35" width="3">
+         <VBox.margin>
+            <Insets right="4.0" top="4.0" />
+         </VBox.margin></Rectangle>
+        </VBox>
+    <!--</left>-->
+    <!--<center>-->
+        <VBox alignment="CENTER">
+            <Button fx:id="tabButton" />
+        </VBox>
+    <!--</center>-->
+</HBox>

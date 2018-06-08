@@ -1,13 +1,7 @@
 package app
 
-import api.DsmApi
-import api.model.DsmDcsCatalog
-import io.reactivex.internal.operators.observable.ObservableError
-import io.reactivex.schedulers.Schedulers
-import org.reactivestreams.Subscriber
-import tornadofx.launch
+import tornadofx.*
 import ui.UsfmScreen
-import ui.view.UsfmView
 
 object Application {
 

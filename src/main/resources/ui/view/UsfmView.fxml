@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="600.0" prefWidth="600.0">
+    <left>
+        <VBox fx:id="tabPane">
+        </VBox>
+    </left>
+    <center>
+        <TextArea fx:id="textArea"/>
+    </center>
+
+</BorderPane>
