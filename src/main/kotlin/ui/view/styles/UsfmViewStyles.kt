@@ -10,6 +10,7 @@ class UsfmViewStyles : Stylesheet() {
         val root by cssclass()
         val tabPane by cssclass()
         val textArea by cssclass()
+        val drawer by cssclass()
 
         val textColor = c("BABABA")
         val textAreaBackground = c("#222324")
@@ -28,6 +29,9 @@ class UsfmViewStyles : Stylesheet() {
             wrapText = true
             font = Font.font("monaco", FontWeight.BOLD, 9.0)
             textFill = textColor
+        }
+        drawer {
+
         }
     }
 }

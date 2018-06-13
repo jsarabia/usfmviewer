@@ -75,6 +75,10 @@ dependencies {
     compile 'de.jensd:fontawesomefx-commons:9.1.2-jpms'
     compile 'de.jensd:fontawesomefx-materialicons:2.2.0-9.1.2-jpms'
     compile 'de.jensd:fontawesomefx-icons525:4.2.0-9.1.2-jpms'
+
+    compile 'com.jfoenix:jfoenix:8.0.4' // Java 8
+    compile 'io.datafx:datafx:8.0.1'
+    compile 'io.datafx:flow:8.0.1'
 }
 
 compileKotlin {

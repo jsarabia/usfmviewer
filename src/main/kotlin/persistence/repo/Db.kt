@@ -12,13 +12,12 @@ import org.sqlite.SQLiteDataSource
 import persistence.model.Books
 import persistence.model.Languages
 import java.sql.Connection
-import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class Db : UsfmViewerDatabase {
 
-    val db = Database.connect("jdbc:sqlite:tr.db", "org.sqlite.JDBC")
+    val db = Database.connect("jdbc:sqlite:usfm.sqlite", "org.sqlite.JDBC")
     val source = SQLiteDataSource()
     val languageRepo = LanguageRepo()
     val bookRepo = BookRepo()
@@ -28,7 +27,7 @@ class Db : UsfmViewerDatabase {
         transaction {
             create(Books, Languages)
         }
-        source.url = "jdbc:sqlite:tr.db"
+        source.url = "jdbc:sqlite:sqlite.db"
     }
 
     override fun getBookDao(): Dao<Book> {

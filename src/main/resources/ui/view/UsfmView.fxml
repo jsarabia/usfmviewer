@@ -4,6 +4,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import javafx.scene.layout.StackPane?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="600.0" prefWidth="600.0">
@@ -12,7 +14,10 @@
         </VBox>
     </left>
     <center>
-        <TextArea fx:id="textArea"/>
+        <StackPane>
+            <TextArea fx:id="textArea"/>
+            <JFXDrawer fx:id="drawer" defaultDrawerSize="400" minHeight="600" direction="RIGHT"/>
+        </StackPane>
     </center>
 
 </BorderPane>

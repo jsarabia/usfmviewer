@@ -9,6 +9,10 @@ import org.jetbrains.exposed.dao.IntIdTable
 object Books : IntIdTable() {
     val slug = varchar("slug", 50)
     val name = varchar("name", 50)
+
+    init {
+        index(true, slug, name)
+    }
 }
 
 class BookEntity(id: EntityID<Int>) : IntEntity(id) {

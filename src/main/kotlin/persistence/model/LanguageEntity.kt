@@ -7,17 +7,21 @@ import org.jetbrains.exposed.dao.IntIdTable
 
 
 object Languages : IntIdTable() {
-        val slug = varchar("slug", 255)
-        val name = varchar("name", 255)
-        val ang = varchar("ang", 255)
-        val direction = varchar("direction", 3) // ltr or rtl
+    val slug = varchar("slug", 255)
+    val name = varchar("name", 255)
+    val ang = varchar("ang", 255)
+    val direction = varchar("direction", 3) // ltr or rtl
+
+    init {
+        index(true, slug, name)
+    }
 }
 
 class LanguageEntity(id: EntityID<Int>) : IntEntity(id) {
-        companion object : IntEntityClass<LanguageEntity>(Languages)
+    companion object : IntEntityClass<LanguageEntity>(Languages)
 
-        var slug by Languages.slug
-        var name by Languages.name
-        var ang by Languages.ang
-        var direction by Languages.direction
+    var slug by Languages.slug
+    var name by Languages.name
+    var ang by Languages.ang
+    var direction by Languages.direction
 }

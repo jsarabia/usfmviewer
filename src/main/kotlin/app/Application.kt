@@ -23,12 +23,13 @@ object Application {
 //                .subscribeOn(Schedulers.newThread())
 //                .observeOn(Schedulers.io())
 //                .subscribe(
-//                        { it-> println("ayy") } ,
-//                        { it -> println("err")},
+//                        {
+//                            it-> println("ayy") } ,
+//                        {
+//                            it -> println("err")},
 //                        {
 //                            println("ayy complete")
 //                        }
 //                )
-
     }
 }
