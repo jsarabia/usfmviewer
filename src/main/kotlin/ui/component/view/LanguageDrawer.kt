@@ -1,13 +1,20 @@
-package ui.view
+package ui.component.view
 
+import com.github.thomasnield.rxkotlinfx.actionEvents
 import com.jfoenix.controls.JFXListView
+import data.Language
+import javafx.event.EventHandler
 import javafx.geometry.Pos
 import javafx.scene.control.TextField
 import javafx.scene.layout.Priority
 import javafx.scene.layout.VBox
 import tornadofx.*
+import tornadofx.FX.Companion.messages
+import ui.component.viewmodel.SearchListViewModel
 
 class LanguageDrawer : VBox() {
+
+    val viewModel = SearchListViewModel()
 
     val languageList = JFXListView<LanguageListItem>()
     val searchField = TextField()
@@ -16,7 +23,7 @@ class LanguageDrawer : VBox() {
         with(this) {
             text {
                 id = "title"
-                text = "Language"
+                text = messages["language"].capitalize()
                 style {
                     fontSize = 2.em
                     alignment = Pos.CENTER
@@ -24,7 +31,8 @@ class LanguageDrawer : VBox() {
             }
 
             this += searchField.apply {
-                text = "Search..."
+                text = "${messages["search"].capitalize()}..."
+                onMouseClicked = EventHandler { text = "" }
             }
 
             this += languageList.apply {
@@ -36,12 +44,15 @@ class LanguageDrawer : VBox() {
             }
         }
 
+        searchField.actionEvents()
+                .subscribe({ println("text changed")})
+
         for (i in 1..100) {
-            addLanguage("English", "en")
+            addLanguage(Language("en", "English", "English", "ltr"))
         }
     }
 
-    fun addLanguage(name: String, slug: String) {
-        languageList.items.add(LanguageListItem(name, slug))
+    fun addLanguage(language: Language) {
+        languageList.items.add(LanguageListItem(language))
     }
 }

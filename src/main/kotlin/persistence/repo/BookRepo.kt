@@ -26,6 +26,12 @@ class BookRepo : Dao<Book> {
         return Book(id = bke.id.value, slug = bke.slug, name = bke.name)
     }
 
+    override fun getAll() : List<Book> {
+        lateinit var books : Iterable<BookEntity>
+        transaction { books = BookEntity.all() }
+        return books.map { Book(it.slug, it.name, it.id.value) }
+    }
+
     override fun update(book: Book) {
         var bke = getById(book.id)
         transaction {

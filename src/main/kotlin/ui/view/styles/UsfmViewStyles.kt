@@ -27,7 +27,7 @@ class UsfmViewStyles : Stylesheet() {
             baseColor = Color.TRANSPARENT
             backgroundColor += textAreaBackground
             wrapText = true
-            font = Font.font("monaco", FontWeight.BOLD, 9.0)
+            font = Font.font("noto sans", FontWeight.BOLD, 9.0)
             textFill = textColor
         }
         drawer {

@@ -1,4 +1,4 @@
-package ui.view.styles
+package ui.component.style
 
 import javafx.geometry.Pos
 import javafx.scene.control.ContentDisplay

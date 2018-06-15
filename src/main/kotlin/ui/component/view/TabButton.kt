@@ -1,4 +1,4 @@
-package ui.view
+package ui.component.view
 
 import javafx.scene.Node
 import javafx.scene.control.Button
@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox
 import javafx.scene.paint.Color
 import javafx.scene.shape.Rectangle
 import tornadofx.*
-import ui.view.styles.TabButtonStyles
+import ui.component.style.TabButtonStyles
 
 class TabButton(val text: String, val ic: Node) : Fragment() {
 
