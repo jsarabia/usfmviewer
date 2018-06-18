@@ -2,37 +2,56 @@ package persistence.repo
 
 import data.Language
 import data.dao.Dao
+import io.reactivex.Completable
+import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 import org.jetbrains.exposed.sql.transactions.transaction
 import persistence.model.LanguageEntity
 
 class LanguageRepo : Dao<Language> {
 
-    override fun insert(language: Language) : Int {
-        val lang =  LanguageEntity.new {
-            name = language.name
-            slug = language.slug
-            ang = language.ang
-            direction = language.direction
-        }
-        return lang.id.value
-    }
+    override fun insert(language: Language): Observable<Int> =
+            Observable.just(
+                    transaction {
+                        LanguageEntity.new {
+                            name = language.name
+                            slug = language.slug
+                            ang = language.ang
+                            direction = language.direction
+                        }
+                    }.id.value
+            ).subscribeOn(Schedulers.io())
 
-    override fun getById(id: Int) : Language {
-        val le = LanguageEntity.get(id)
-        return Language(id = le.id.value, slug = le.slug, name = le.name, ang = le.ang, direction = le.direction)
-    }
+    override fun getById(id: Int): Observable<Language> =
+            Observable.just(
+                    {
+                        val le = transaction {
+                            LanguageEntity.get(id)
+                        }
+                        Language(id = le.id.value, slug = le.slug, name = le.name, ang = le.ang, direction = le.direction)
+                    }.invoke()
+            ).subscribeOn(Schedulers.io())
 
-    override fun getAll(): List<Language> {
-        lateinit var languages : Iterable<LanguageEntity>
-        transaction { languages = LanguageEntity.all() }
-        return languages.map { Language(it.slug, it.ang, it.name, it.direction, it.id.value) }
-    }
+    override fun getAll(): Observable<List<Language>> =
+            Observable.just(
+                    {
+                        val languages = transaction { LanguageEntity.all() }.toList()
+                        languages.map { Language(it.slug, it.ang, it.name, it.direction, it.id.value) }
+                    }.invoke()
+            ).subscribeOn(Schedulers.io())
 
-    override fun update(language: Language) {
-        var le = getById(language.id)
-        le.name = language.name
-        le.slug = language.slug
-        le.direction = language.direction
-        le.ang = language.ang
-    }
+
+    override fun update(language: Language): Completable =
+            Completable.fromAction(
+                    {
+                        var le = getById(language.id).subscribe {
+                            transaction {
+                                it.name = language.name
+                                it.slug = language.slug
+                                it.direction = language.direction
+                                it.ang = language.ang
+                            }
+                        }
+                    }
+            ).subscribeOn(Schedulers.io())
 }

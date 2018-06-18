@@ -1,6 +1,5 @@
 package persistence.repo
 
-import data.Book
 import data.Language
 import data.dao.Dao
 import data.persistence.UsfmViewerDatabase
@@ -20,7 +19,7 @@ class Db : UsfmViewerDatabase {
     val db = Database.connect("jdbc:sqlite:usfm.sqlite", "org.sqlite.JDBC")
     val source = SQLiteDataSource()
     val languageRepo = LanguageRepo()
-    val bookRepo = BookRepo()
+//    val bookRepo = BookRepo()
 
     init {
         TransactionManager.manager.defaultIsolationLevel = Connection.TRANSACTION_SERIALIZABLE
@@ -30,9 +29,9 @@ class Db : UsfmViewerDatabase {
         source.url = "jdbc:sqlite:sqlite.db"
     }
 
-    override fun getBookDao(): Dao<Book> {
-        return bookRepo
-    }
+//    override fun getBookDao(): Dao<Book> {
+//        return bookRepo
+//    }
 
     override fun getLanguageDao(): Dao<Language> {
         return languageRepo
